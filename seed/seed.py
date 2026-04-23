@@ -1,6 +1,3 @@
-import os
-import gdown
-
 import json
 from app import create_app, db
 from app.models import Profile
@@ -14,6 +11,7 @@ def safe_get(item, *keys):
     return None
 
 with app.app_context():
+    db.drop_all()
     db.create_all()
     with open("data.json") as f:
         data = json.load(f)
@@ -29,9 +27,9 @@ with app.app_context():
 
         name = safe_get(item, "name")
         if not name:
-            continue
-        exists = Profile.query.filter_by(name=name).first()
+         continue
 
+        exists = Profile.query.filter_by(name=name).first()
         if exists:
             continue
 

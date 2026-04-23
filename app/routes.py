@@ -20,6 +20,7 @@ def apply_filters(query, args):
 
     if args.get("max_age"):
         query = query.filter(Profile.age <= int(args.get("max_age")))
+
     if args.get("min_gender_probability"):
         query = query.filter(Profile.gender_probability >= float(args.get("min_gender_probability")))
 
@@ -28,6 +29,7 @@ def apply_filters(query, args):
 
     return query
 
+# -------- SORT --------
 def apply_sort(query, args):
     sort_by = args.get("sort_by")
     order = args.get("order", "asc")
@@ -41,6 +43,7 @@ def apply_sort(query, args):
                 query = query.order_by(column.asc())
     return query
 
+# -------- RESPONSE FORMAT --------
 def serialize(profile):
     return {
         "id": profile.id,
@@ -55,6 +58,7 @@ def serialize(profile):
         "created_at": profile.created_at.isoformat() + "Z"
     }
 
+# -------- MAIN ENDPOINT --------
 @bp.route('/api/profiles', methods=['GET'])
 def get_profiles():
     args = request.args
@@ -79,6 +83,7 @@ def get_profiles():
         "data": [serialize(p) for p in results]
     })
 
+# -------- NLP PARSER --------
 def parse_query(q):
     q = q.lower()
     filters = {}
@@ -116,6 +121,7 @@ def parse_query(q):
 
     return filters if filters else None
 
+# -------- NLP ENDPOINT --------
 @bp.route('/api/profiles/search', methods=['GET'])
 def search_profiles():
     q = request.args.get("q")
@@ -145,4 +151,3 @@ def search_profiles():
         "total": total,
         "data": [serialize(p) for p in results]
     })
-
