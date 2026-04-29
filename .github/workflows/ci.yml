@@ -38,9 +38,11 @@ jobs:
         run: |
           mkdir -p instance
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PWD" >> $GITHUB_ENV
+
       - name: Setup database
         run: |
-          mkdir -p instance
           python seed/seed.py
 
       - name: Run tests
