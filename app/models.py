@@ -37,4 +37,3 @@ class RefreshToken(db.Model):
     user_id = db.Column(db.String, db.ForeignKey("users.id"), nullable=False)
     expires_at = db.Column(db.DateTime, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-    
