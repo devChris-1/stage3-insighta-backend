@@ -38,8 +38,7 @@ def github_login():
         f"&scope=read:user user:email"
         f"&state={state}"
         f"&code_challenge={code_challenge}"
-        f"&code_challenge_method={code_challenge_method}"
-        
+        f"&code_challenge_method={code_challenge_method}"      
     )
     return redirect(f"https://github.com/login/oauth/authorize?{params}")
 
