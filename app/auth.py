@@ -37,6 +37,9 @@ def github_login():
         f"&redirect_uri={current_app.config['GITHUB_REDIRECT_URI']}"
         f"&scope=read:user user:email"
         f"&state={state}"
+        f"&code_challenge={code_challenge}"
+        f"&code_challenge_method={code_challenge_method}"
+        
     )
     return redirect(f"https://github.com/login/oauth/authorize?{params}")
 
@@ -56,6 +59,7 @@ def github_callback():
             "client_secret": current_app.config["GITHUB_CLIENT_SECRET"],
             "code": code,
             "redirect_uri": current_app.config["GITHUB_REDIRECT_URI"],
+            "code_verifier": code_verifier,
         },
         headers={"Accept": "application/json"},
     )

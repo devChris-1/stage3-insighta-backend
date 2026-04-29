@@ -1,5 +1,4 @@
 from functools import wraps
-from datetime import datetime, timezone
 import jwt
 from flask import request, jsonify, current_app
 from app.models import User
