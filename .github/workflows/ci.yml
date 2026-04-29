@@ -41,7 +41,7 @@ jobs:
       - name: Setup database
         run: |
           mkdir -p instance
-          python seed.py
+          python seed/seed.py
 
       - name: Run tests
         env:
