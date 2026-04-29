@@ -33,6 +33,16 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8 app tests --max-line-length=120 --ignore=E501,W503
+
+      - name: Create instance folder
+        run: |
+          mkdir -p instance
+
+      - name: Setup database
+        run: |
+          mkdir -p instance
+          python seed.py
+
       - name: Run tests
         env:
           FLASK_ENV: testing
