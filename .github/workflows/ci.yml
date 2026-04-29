@@ -44,4 +44,4 @@ jobs:
           FRONTEND_URL: http://localhost:3000
           DATABASE_URL: sqlite:///test.db
         run: |
-          pytest tests/ -v
+          PYTHONPATH=. pytest tests/ -v
