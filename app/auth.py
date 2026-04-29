@@ -2,7 +2,7 @@ import jwt
 import httpx
 import secrets
 from datetime import datetime, timedelta, timezone
-from flask import Blueprint, request, jsonify, redirect, current_app
+from flask import Blueprint, request, jsonify, redirect, current_app, make_response
 from app import db
 from app.models import User, RefreshToken
 
